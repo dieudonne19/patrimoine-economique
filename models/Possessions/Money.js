@@ -45,9 +45,9 @@ export class CompteBancaireEpargne extends Money {
             const intervalDeJours = new Date(dateDonnee).getDay() - super.getDateDebut.getDay();
             const nombreAnnee = intervalDeAnnee + intervalDeMois / 12;
 
-            const interet = (this.valeur  * (this.tauxDinteret / 100)) * (nombreAnnee + intervalDeJours / 365);
+            const interet = (super.getValeur  * (this.tauxDinteret / 100)) * (nombreAnnee + intervalDeJours / 365);
 
-            return Math.round(this.getValeur + interet);
+            return Math.round(super.getValeur + interet);
         } else return this.getValeur
     }
 }
@@ -59,8 +59,8 @@ export class CompteBancaireCourant extends Money {
      * @param {String} libelle
      * @param {number} valeur
      */
-    constructor(possesseur, libelle, valeur ) {
-        super(possesseur, libelle, valeur);
+    constructor(possesseur, libelle, valeur, dateDebut ) {
+        super(possesseur, libelle, valeur, dateDebut);
         this.type = "COURANT";
         this.tauxDeDecouvert = -10000;
     }

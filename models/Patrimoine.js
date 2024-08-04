@@ -1,19 +1,20 @@
+import { add } from "../data/index.js";
+import { Flux } from "./flux.js";
 import { Person } from "./Personne.js";
-import { Possession } from "./Possession.js";
+import { Possession } from "./Possessions/Possession.js";
 import {BienMateriels} from "./Possessions/BienMateriels.js";
-import { Money } from "./Possessions/Money.js";
-import {TrainDeVie} from "./TrainDeVie.js";
+import { CompteBancaireCourant, CompteBancaireEpargne, Money } from "./Possessions/Money.js";
 
 export class Patrimoine {
     /**
      * @param {Person} possesseur
      * @param {Object[]} possessions
-     * @param {Object[]} trainDeVie
+     * @param {Object[]} flux
      */
-    constructor(possesseur, possessions, trainDeVie) {
+    constructor(possesseur, possessions, flux) {
         this.possesseur = possesseur;
         this.possessions = possessions;
-        this.trainDeVie = trainDeVie;
+        this.flux = flux;
         this.date = new Date();
     }
 
@@ -22,26 +23,37 @@ export class Patrimoine {
      * @param {Date} dateDonnee
      * @returns {Number}
      */
-    getPatrimoineValue(dateDonnee) {
+    CalculatePatrimoineValue(dateDonnee) {
+
         const ensBienMateriels = this.possessions.filter(bien => bien instanceof BienMateriels);
-        const ensTrainDeVie = this.trainDeVie.filter(traindv => traindv instanceof TrainDeVie);
+        const ensflux = this.flux.filter(traindv => traindv instanceof Flux);
         const ensArgent = this.possessions.filter(possession => possession instanceof Money);
 
-        const depenses = {
-            totalTrainDeVie: 0,
-            totalBiens: 0
-        };
+        let total = 0;
 
-        const Argent = {
-            espece: 0,
-            epargne: 0,
-            courant: 0
-        };
+        ensBienMateriels.forEach(
+          (bien) => (total += bien.getValeurAt(dateDonnee))
+        );
+        
+        ensflux.forEach((flux) => (total += flux.getValeurAt(dateDonnee)));
 
-        ensBienMateriels.forEach(bien => depenses.totalBiens += bien.getValeurAt(dateDonnee));
-        ensTrainDeVie.forEach(trainDv => depenses.totalTrainDeVie += trainDv.getTrainDeVieAt(dateDonnee));
+        ensArgent.forEach((arg) => {
+          if (arg instanceof CompteBancaireEpargne)
+            total += arg.getValeurAt(dateDonnee);
+          else total += arg.getValeur;
+        });
 
-        return depenses;
+        return total;
+    }
+
+    getPatrimoineValueAt(dateDonnee) {
+        if (new Date(dateDonnee) <= this.date) return 0;
+        else {
+            const valeurs = this.CalculatePatrimoineValue(dateDonnee);
+            
+            // add("./data/data.json", valeurs)
+            return valeurs;
+        }
     }
 
     /**
@@ -56,7 +68,7 @@ export class Patrimoine {
      * @param {TrainDeVie} traindeVie
      */
     addTraindeVie(traindeVie) {
-        this.trainDeVie.push(traindeVie)
+        this.flux.push(traindeVie)
     }
 
 
@@ -71,7 +83,24 @@ export class Patrimoine {
      * @param {TrainDeVie} traindeVie
      */
     removeTrainDeVie(traindeVie) {
-        this.trainDeVie.filter(tv => tv.name !== traindeVie.libelle);
+        this.flux.filter(tv => tv.name !== traindeVie.libelle);
+    }
+
+    get getListOfPossessions() {
+        return this.possessions;
+    }
+    get getListOfFlux() {
+        return this.flux;
+    }
+
+    build() {
+        const valeur = [
+            this.possesseur.getNom,
+            this.getListOfPossessions,
+            this.getListOfFlux
+        ]
+
+        add("./data/data.json", valeur)
     }
 
 }

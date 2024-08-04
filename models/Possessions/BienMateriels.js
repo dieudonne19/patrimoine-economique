@@ -19,23 +19,25 @@ export class BienMateriels extends Possession {
      * @param {Date} dateDonnee
      */
     getAmortissementAt (dateDonnee) {
-        if (this.dateDebut < dateDonnee) {
+        if (super.getDateDebut <= dateDonnee) {
             const intervalDeMois = new Date(dateDonnee).getMonth() - super.getDateDebut.getMonth();
             const intervalDeAnnee =  new Date(dateDonnee).getFullYear() - super.getDateDebut.getFullYear();
             const intervalDeJours = new Date(dateDonnee).getDay() - super.getDateDebut.getDay();
             const nombreMois = (intervalDeAnnee * 12) + intervalDeMois;
 
+            console.log(`annee ${intervalDeAnnee} / mois ${intervalDeMois} / jours ${intervalDeJours}`)
 
             const valeurAmortissement = (this.valeur * (this.amortissement / 100)) * (nombreMois / 12 + intervalDeJours / 365);
-            
             this.valeur -= valeurAmortissement;
         } else this.valeur -= 0;
     }
 
     getValeurAt(dateDonnee) {
-        this.getAmortissementAt(dateDonnee);
-        return Math.round(this.valeur);
-        
+        if (new Date(dateDonnee) <= super.getDateDebut) return 0;
+        else {
+            this.getAmortissementAt(dateDonnee);
+            return Math.round(this.valeur);
+        }
     }
 
     get getType() {

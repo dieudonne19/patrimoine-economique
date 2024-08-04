@@ -1,0 +1,93 @@
+[
+  "Ilo",
+  [
+    {
+      "possesseur" : {
+        "nom" : "Ilo"
+      },
+      "libelle" : "Ordinateur portable",
+      "valeur" : 1000000,
+      "dateDebut" : "2022-02-01",
+      "type" : "materiel informatique",
+      "amortissement" : 10
+    },
+    {
+      "possesseur" : {
+        "nom" : "Ilo"
+      },
+      "libelle" : "pantalon",
+      "valeur" : 30000,
+      "dateDebut" : "2023-03-1",
+      "type" : "vestimentaire",
+      "amortissement" : 20
+    },
+    {
+      "possesseur" : {
+        "nom" : "Ilo"
+      },
+      "libelle" : "casquette",
+      "valeur" : 20000,
+      "dateDebut" : "2019-09-19",
+      "type" : "vestimentaire",
+      "amortissement" : 20
+    },
+    {
+      "possesseur" : {
+        "nom" : "Ilo"
+      },
+      "libelle" : "argent en espece",
+      "valeur" : 50000,
+      "dateDebut" : "2024-7-12",
+      "type" : "ESPECE"
+    },
+    {
+      "possesseur" : {
+        "nom" : "Ilo"
+      },
+      "libelle" : "ma compte bancaire epargne",
+      "valeur" : 200000,
+      "dateDebut" : "2020-06-5",
+      "type" : "EPARGNE",
+      "tauxDinteret" : 5
+    },
+    {
+      "possesseur" : {
+        "nom" : "Ilo"
+      },
+      "libelle" : "ma compte bancaire courant",
+      "valeur" : 100000,
+      "dateDebut" : "2023-12-04",
+      "type" : "COURANT",
+      "tauxDeDecouvert" : -10000
+    }
+  ],
+  [
+    {
+      "possesseur" : {
+        "nom" : "Ilo"
+      },
+      "libelle" : "salaire",
+      "valeur" : 1500000,
+      "dateDebut" : "2024-8-4",
+      "type" : "ENTRANT"
+    },
+    {
+      "possesseur" : {
+        "nom" : "Ilo"
+      },
+      "libelle" : "loyer",
+      "valeur" : 500000,
+      "dateDebut" : "2024-8-4",
+      "type" : "SORTANT"
+    },
+    {
+      "possesseur" : {
+        "nom" : "Ilo"
+      },
+      "libelle" : "entretien_voiture",
+      "valeur" : 500000,
+      "dateDebut" : "2024-8-4",
+      "type" : "SORTANT"
+    }
+  ]
+]

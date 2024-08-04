@@ -9,9 +9,11 @@ export class Flux extends Possession {
    * @param {String} libelle 
    * @param {Number} valeur 
    * @param {Date} dateDebut 
+   * @param {String} type || ENTRANT || SORTANT
    */
-  constructor(possesseur, libelle, valeur, dateDebut) {
+  constructor(possesseur, libelle, valeur, dateDebut, type) {
     super(possesseur, libelle, valeur, dateDebut);
+    this.type = type;
   }
 
   /**
@@ -20,27 +22,33 @@ export class Flux extends Possession {
   getValeurAt(dateDonnee) {
 
     const date = new Date(dateDonnee);
-    if (super.getDateDebut > date) {
-      throw new Error("Impossible de donner la valeur du flux à cette date");
+    if (super.getDateDebut >= date) {
+      return 0
     }
 
     const intervalAnnee = date.getFullYear() - super.getDateDebut.getFullYear();
     const intervalMois = date.getMonth() - super.getDateDebut.getMonth();
-    const intervalJour = date.getDate() - super.getDateDebut.getDate();
+    // const intervalJour = date.getDate() - super.getDateDebut.getDate();
 
     let nombreDeMois = (intervalAnnee * 12) + intervalMois;
 
-    console.log(`Annee ${intervalAnnee} / Mois ${intervalMois} / Jour ${intervalJour}`);
-    
-    console.log(`Nbr de mois ${nombreDeMois}`);
-    
-    return super.getValeur * nombreDeMois;
-  
+    // console.log(`Nombre de mois / ${nombreDeMois}`);
+
+    return this.type === "ENTRANT" ? super.getValeur * nombreDeMois : -(super.getValeur * nombreDeMois)
   }
+
+
+  get getType() {
+    return this.type.toUpperCase();
+  }
+
 }
 
 
-const Moi = new Person("Dieudonné");
-const salaire = new Flux(Moi, "Salaire", 600_000, "2024-3-3");
-console.log(salaire.getDateDebut)
-console.log(salaire.getValeurAt("2024-6-14"))
+const Moi = new Person("Dieudonné")
+const salaire = new Flux(
+  Moi,
+  "salaire", 2500, "2024-3-3", "ENTRANT"
+)
+
+console.log(salaire.getValeurAt("3-3-2024"));

@@ -5,12 +5,13 @@ export class Possession {
      * @param  {Person} possesseur
      * @param {Number} valeur
      * @param {String} libelle
+     * @param {Date} dateDebut
      */
     constructor(possesseur, libelle, valeur, dateDebut) {
         this.possesseur = possesseur;
         this.libelle = libelle;
         this.valeur = valeur >= 0 ? valeur :  new Error("Positive value expected");
-        this.dateDebut = dateDebut;
+        this.dateDebut = new Date(dateDebut);
     }
 
     get getPossesseur() {
