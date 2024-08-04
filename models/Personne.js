@@ -1,7 +1,21 @@
-class Personne {
+export class Person {
+    
+  /**
+   * @param {String} nom
+   */
   constructor(nom) {
+      this.nom = nom;
+  }
+
+
+  get getNom() {
+      return this.nom;
+  }
+
+  /**
+   * @param {String} nom 
+   */
+  set setNom(nom) {
     this.nom = nom;
   }
 }
-
-module.exports = Person;
