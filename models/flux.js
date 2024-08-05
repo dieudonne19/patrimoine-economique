@@ -22,7 +22,7 @@ export class Flux extends Possession {
   getValeurAt(dateDonnee) {
 
     const date = new Date(dateDonnee);
-    if (super.getDateDebut >= date) {
+    if (super.getDateDebut > date) {
       return 0
     }
 

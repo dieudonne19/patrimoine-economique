@@ -1,4 +1,4 @@
-//import fs from 'node:fs/promises';
+import fs from 'node:fs/promises';
 
 
 /**
@@ -7,6 +7,6 @@
  * @param {Object} possessions 
  */
 export const add =  (path, possessions) => {
-    //fs.writeFile(path, JSON.stringify(possessions), 'utf-8')
-    // console.log(possessions)
+    fs.writeFile(path, JSON.stringify(possessions), 'utf-8')
+    console.log(possessions)
 }

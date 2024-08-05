@@ -33,7 +33,7 @@ export class BienMateriels extends Possession {
     }
 
     getValeurAt(dateDonnee) {
-        if (new Date(dateDonnee) <= super.getDateDebut) return 0;
+        if (new Date(dateDonnee) < super.getDateDebut) return 0;
         else {
             this.getAmortissementAt(dateDonnee);
             return Math.round(this.valeur);

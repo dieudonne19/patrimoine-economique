@@ -47,7 +47,10 @@ export class Patrimoine {
     }
 
     getPatrimoineValueAt(dateDonnee) {
-        if (new Date(dateDonnee) <= this.date) return 0;
+        if (new Date(dateDonnee) < this.date) {
+            console.log(dateDonnee, this.date)
+            return 0;
+        }
         else {
             const valeurs = this.CalculatePatrimoineValue(dateDonnee);
             

@@ -8,7 +8,7 @@ import {CompteBancaireCourant, CompteBancaireEpargne, Money} from "./models/Poss
 import { Flux } from "./models/flux.js";
 
 // Propriétaire du patrimoine
-export const Moi = new Person("Ilo", 600000);
+export const Moi = new Person("Iloniaina", 600000);
 
 // Mes possessions et train de vie
 export const possessions = [
@@ -28,6 +28,6 @@ export const flux = [
 
 
 const maPatrimoine = new Patrimoine(Moi, possessions, flux);
-// maPatrimoine.build()
+maPatrimoine.build()
 const patrimoine = maPatrimoine.getPatrimoineValueAt("2024-12-31")
 console.log(patrimoine);
