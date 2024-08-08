@@ -1,13 +1,13 @@
-import { add } from "../data/index.js";
-import { Flux } from "./flux.js";
-import { Person } from "./Personne.js";
+import { writeFileFrom } from "../data/index.js";
+import { Flux } from "./Flux.js";
+import { Personne } from "./Personne.js";
 import { Possession } from "./Possessions/Possession.js";
 import {BienMateriels} from "./Possessions/BienMateriels.js";
-import { CompteBancaireCourant, CompteBancaireEpargne, Money } from "./Possessions/Money.js";
+import { CompteBancaireEpargne, Money } from "./Possessions/Money.js";
 
 export class Patrimoine {
     /**
-     * @param {Person} possesseur
+     * @param {Personne} possesseur
      * @param {Object[]} possessions
      * @param {Object[]} flux
      */
@@ -19,7 +19,7 @@ export class Patrimoine {
     }
 
     /**
-     * Retourne la patrimoine d'un particulier dans une date donnée
+     * Retourne la patrimoine d'un particulier à une date donnée
      * @param {Date} dateDonnee
      * @returns {Number}
      */
@@ -46,17 +46,22 @@ export class Patrimoine {
         return total;
     }
 
+    /**
+     * @param {Date} dateDonnee 
+     * @returns {number}
+     */
     getPatrimoineValueAt(dateDonnee) {
-        if (new Date(dateDonnee) < this.date) {
-            console.log(dateDonnee, this.date)
-            return 0;
+        if (new Date(dateDonnee) < this.date) return 0;
+        else return this.CalculatePatrimoineValue(dateDonnee);  
+    }
+
+    build() {
+        const valeur = {
+            possesseur: this.possesseur.getNom,
+            possessions : this.getListOfPossessions,
+            flux: this.getListOfFlux
         }
-        else {
-            const valeurs = this.CalculatePatrimoineValue(dateDonnee);
-            
-            // add("./data/data.json", valeurs)
-            return valeurs;
-        }
+        writeFileFrom("./data/data.json", valeur)
     }
 
     /**
@@ -68,10 +73,10 @@ export class Patrimoine {
     }
 
     /**
-     * @param {TrainDeVie} traindeVie
+     * @param {Flux} flux
      */
-    addTraindeVie(traindeVie) {
-        this.flux.push(traindeVie)
+    addFlux(flux) {
+        this.flux.push(flux)
     }
 
 
@@ -83,10 +88,10 @@ export class Patrimoine {
     }
 
     /**
-     * @param {TrainDeVie} traindeVie
+     * @param {TrainDeVie} flux
      */
-    removeTrainDeVie(traindeVie) {
-        this.flux.filter(tv => tv.name !== traindeVie.libelle);
+    removeFlux(flux) {
+        this.flux.filter(fl => fl.libelle !== flux.libelle);
     }
 
     get getListOfPossessions() {
@@ -95,15 +100,4 @@ export class Patrimoine {
     get getListOfFlux() {
         return this.flux;
     }
-
-    build() {
-        const valeur = [
-            this.possesseur.getNom,
-            this.getListOfPossessions,
-            this.getListOfFlux
-        ]
-
-        add("./data/data.json", valeur)
-    }
-
 }

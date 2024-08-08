@@ -1,11 +1,11 @@
-import { Person } from "./Personne.js";
+import { Personne } from "./Personne.js";
 import { Possession } from "./Possessions/Possession.js";
 
 
 export class Flux extends Possession {
 
   /**
-   * @param {Person} possesseur 
+   * @param {Personne} possesseur 
    * @param {String} libelle 
    * @param {Number} valeur 
    * @param {Date} dateDebut 
@@ -15,7 +15,7 @@ export class Flux extends Possession {
     super(possesseur, libelle, valeur, dateDebut);
     this.type = type;
   }
-
+ 
   /**
    * @param {Date} dateDonnee 
    */
@@ -32,8 +32,6 @@ export class Flux extends Possession {
 
     let nombreDeMois = (intervalAnnee * 12) + intervalMois;
 
-    // console.log(`Nombre de mois / ${nombreDeMois}`);
-
     return this.type === "ENTRANT" ? super.getValeur * nombreDeMois : -(super.getValeur * nombreDeMois)
   }
 
@@ -43,12 +41,3 @@ export class Flux extends Possession {
   }
 
 }
-
-
-const Moi = new Person("Dieudonné")
-const salaire = new Flux(
-  Moi,
-  "salaire", 2500, "2024-3-3", "ENTRANT"
-)
-
-console.log(salaire.getValeurAt("3-3-2024"));

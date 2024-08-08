@@ -25,7 +25,7 @@ export class BienMateriels extends Possession {
             const intervalDeJours = new Date(dateDonnee).getDay() - super.getDateDebut.getDay();
             const nombreMois = (intervalDeAnnee * 12) + intervalDeMois;
 
-            console.log(`annee ${intervalDeAnnee} / mois ${intervalDeMois} / jours ${intervalDeJours}`)
+            // console.log(`annee ${intervalDeAnnee} / mois ${intervalDeMois} / jours ${intervalDeJours}`)
 
             const valeurAmortissement = (this.valeur * (this.amortissement / 100)) * (nombreMois / 12 + intervalDeJours / 365);
             this.valeur -= valeurAmortissement;

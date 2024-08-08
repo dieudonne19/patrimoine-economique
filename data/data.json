@@ -1,9 +1,9 @@
-[
-    "Iloniaina",
-    [
+{
+    "possesseur": "Ilo",
+    "possessions": [
         {
             "possesseur": {
-                "nom": "Iloniaina"
+                "nom": "Ilo"
             },
             "libelle": "Ordinateur portable",
             "valeur": 1000000,
@@ -13,7 +13,7 @@
         },
         {
             "possesseur": {
-                "nom": "Iloniaina"
+                "nom": "Ilo"
             },
             "libelle": "pantalon",
             "valeur": 30000,
@@ -23,7 +23,7 @@
         },
         {
             "possesseur": {
-                "nom": "Iloniaina"
+                "nom": "Ilo"
             },
             "libelle": "casquette",
             "valeur": 20000,
@@ -33,7 +33,7 @@
         },
         {
             "possesseur": {
-                "nom": "Iloniaina"
+                "nom": "Ilo"
             },
             "libelle": "argent en espece",
             "valeur": 50000,
@@ -42,7 +42,7 @@
         },
         {
             "possesseur": {
-                "nom": "Iloniaina"
+                "nom": "Ilo"
             },
             "libelle": "ma compte bancaire epargne",
             "valeur": 200000,
@@ -52,19 +52,19 @@
         },
         {
             "possesseur": {
-                "nom": "Iloniaina"
+                "nom": "Ilo"
             },
             "libelle": "ma compte bancaire courant",
-            "valeur": 200000,
+            "valeur": 100000,
             "dateDebut": "2023-12-04",
             "type": "COURANT",
             "tauxDeDecouvert": -10000
         }
     ],
-    [
+    "flux": [
         {
             "possesseur": {
-                "nom": "Iloniaina"
+                "nom": "Ilo"
             },
             "libelle": "salaire",
             "valeur": 1500000,
@@ -73,7 +73,7 @@
         },
         {
             "possesseur": {
-                "nom": "Iloniaina"
+                "nom": "Ilo"
             },
             "libelle": "loyer",
             "valeur": 500000,
@@ -82,12 +82,39 @@
         },
         {
             "possesseur": {
-                "nom": "Iloniaina"
+                "nom": "Ilo"
+            },
+            "libelle": "nourriture",
+            "valeur": 50000,
+            "dateDebut": "2024-05-03T21:00:00.000Z",
+            "type": "SORTANT"
+        },
+        {
+            "possesseur": {
+                "nom": "Ilo"
             },
             "libelle": "entretien_voiture",
-            "valeur": 500000,
+            "valeur": 450000,
             "dateDebut": "2024-08-03T21:00:00.000Z",
             "type": "SORTANT"
+        },
+        {
+            "possesseur": {
+                "nom": "Ilo"
+            },
+            "libelle": "revenu passif",
+            "valeur": 1000000,
+            "dateDebut": "2024-08-03T21:00:00.000Z",
+            "type": "ENTRANT"
+        },
+        {
+            "possesseur": {
+                "nom": "Ilo"
+            },
+            "libelle": "1xBet",
+            "valeur": 50000,
+            "dateDebut": "2024-08-03T21:00:00.000Z",
+            "type": "ENTRANT"
         }
     ]
-]
+}

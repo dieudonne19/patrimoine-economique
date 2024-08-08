@@ -1,8 +1,8 @@
-import { Person } from "../Personne.js";
+import { Personne } from "../Personne.js";
 
 export class Possession {
     /**
-     * @param  {Person} possesseur
+     * @param  {Personne} possesseur
      * @param {Number} valeur
      * @param {String} libelle
      * @param {Date} dateDebut

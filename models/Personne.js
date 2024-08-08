@@ -1,4 +1,4 @@
-export class Person {
+export class Personne {
     
   /**
    * @param {String} nom
