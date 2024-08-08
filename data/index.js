@@ -1,15 +1,35 @@
-import fs from 'node:fs';
+import fs from 'node:fs/promises';
 
-const readFileFrom = (path) => {
-    const json = fs.readFileSync(path, "utf-8");
-    return JSON.parse(json)
+async function readFile(path) {
+  try {
+    const data = await fs.readFile(path, { encoding: 'utf8' });
+    return {
+      status: "OK",
+      data: JSON.parse(data),
+    };
+  } catch (err) {
+    return {
+      status: "ERROR",
+      error: err,
+    };
+  }
 }
 
-export const writeFileFrom = (path, newData) => {
-    const data = readFileFrom(path)
-    // console.log(data)
-    fs.writeFileSync(path, JSON.stringify({...newData}))
+
+async function writeFile(path, data) {
+  try {
+    await fs.writeFile(path, JSON.stringify(data), {
+      encoding: 'utf8',
+    });
+    return {
+      status: "OK",
+    };
+  } catch (err) {
+    return {
+      status: "ERROR",
+      error: err,
+    };
+  }
 }
 
-
-// writeFileFrom("./data.json", possessions)
+export { readFile, writeFile };

@@ -26,13 +26,14 @@ export class Flux extends Possession {
       return 0
     }
 
-    const intervalAnnee = date.getFullYear() - super.getDateDebut.getFullYear();
-    const intervalMois = date.getMonth() - super.getDateDebut.getMonth();
-    // const intervalJour = date.getDate() - super.getDateDebut.getDate();
-
-    let nombreDeMois = (intervalAnnee * 12) + intervalMois;
-
-    return this.type === "ENTRANT" ? super.getValeur * nombreDeMois : -(super.getValeur * nombreDeMois)
+    else {
+      const intervalAnnee = date.getFullYear() - super.getDateDebut.getFullYear();
+      const intervalMois = date.getMonth() - super.getDateDebut.getMonth();
+      // const intervalJour = date.getDate() - super.getDateDebut.getDate();
+      let nombreDeMois = (intervalAnnee * 12) + intervalMois;
+      // console.log(nombreDeMois, 'nombre de mois', super.getValeur * nombreDeMois, super.getValeur * nombreDeMois);
+      return this.type === "ENTRANT" ? super.getValeur * nombreDeMois : -(super.getValeur * nombreDeMois)
+    }
   }
 
 

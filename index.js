@@ -7,12 +7,13 @@ import {CompteBancaireCourant, CompteBancaireEpargne, Money} from "./models/Poss
 import { Flux } from "./models/Flux.js";
 
 // Propriétaire du patrimoine
-export const Moi = new Personne("Ilo", 600000);
+export const Moi = new Personne("Iloniaina");
 
 // Mes possessions et train de vie
 export const possessions = [
     new BienMateriels(Moi, "Ordinateur portable", 1000000, "materiel informatique", "2022-02-01"),
-    new BienMateriels(Moi, "pantalon", 30000, "vestimentaire", "2023-03-1"),
+    new BienMateriels(Moi, "vêtemens", 300000, "vestimentaire", "2023-03-1"),
+    new BienMateriels(Moi, "téléphone", 800000, "vestimentaire", "2019-09-19"),
     new BienMateriels(Moi, "casquette", 20000, "vestimentaire", "2019-09-19"),
     new Money(Moi, "argent en espece", 50000, "2024-7-12"),
     new CompteBancaireEpargne(Moi, "ma compte bancaire epargne", 200000, "2020-06-5"),
@@ -20,19 +21,19 @@ export const possessions = [
 ];
 
 export const flux = [
-    new Flux(Moi, "salaire", 1500000, "2024-08-04", "ENTRANT"),
-    new Flux(Moi, "loyer", 500000, "2024-8-4", "SORTANT"),
+    new Flux(Moi, "salaire", 2500000, "2024-08-04", "ENTRANT"),
+    new Flux(Moi, "revenu passif", 500000, "2024-8-4", "ENTRANT"),
+    new Flux(Moi, "petit boulot", 50000, "2024-8-4", "ENTRANT"),
     new Flux(Moi, "nourriture", 50000, "2024-5-4", "SORTANT"),
-    new Flux(Moi, "entretien_voiture",450000, "2024-8-4", "SORTANT"),
-    new Flux(Moi, "revenu passif", 1000000, "2024-8-4", "ENTRANT"),
-    new Flux(Moi, "1xBet", 50000, "2024-8-4", "ENTRANT")
+    new Flux(Moi, "loyer", 500000, "2024-8-4", "SORTANT"),
+    new Flux(Moi, "entretien_voiture",450000, "2024-8-4", "SORTANT")
 ];
 
 
-const maPatrimoine = new Patrimoine(Moi, possessions, flux);
+const maPatrimoine = new Patrimoine(Moi, possessions, flux, "2024-08-08");
+// console.log(maPatrimoine.scanDate("08 August 2024", "08 August 2024"))
+// console.log(maPatrimoine.scanDate(new Date("2023-05-08"), new Date("2024-07-08")));
 
-
-
-maPatrimoine.build()
-const patrimoine = maPatrimoine.getPatrimoineValueAt("2024-12-31")
+// maPatrimoine.build()
+const patrimoine = maPatrimoine.getPatrimoineValueAt("2024-08-09")
 console.log(patrimoine);

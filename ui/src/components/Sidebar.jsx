@@ -1,23 +1,40 @@
 export function Sidebar({data}){
     const FLUX = ["ENTRANT", "SORTANT"];
-    
-    console.log(data, "flux")
-
+    // console.log(data, "flux")
     return <div className="sidebar round">
         <Logo/>
 
         <h3 className="username">   
-            <span>Bonjour! c{'\''}est </span>
+            <span>Hello! c{'\''}est </span>
             {data[0].possesseur.nom}
         </h3>
 
         {FLUX.map((flux, index)=> {
             return (
-                <Flux key={index} type={flux} value={flux === "ENTRANT" ? calculateFlux(data).entrant : 
+                <FluxCard key={index} type={flux} value={flux === "ENTRANT" ? calculateFlux(data).entrant : 
                     calculateFlux(data).sortant
                 }  />
             )
         })}
+    </div>
+}
+
+
+
+function FluxCard({type, value}) {
+    return <div  className="flux round centered">
+        <p style={{color: "#40408080"}}>{type} /mois</p>
+        <h3>
+            <span style={{fontSize: "1rem"}}>Ar </span>
+            {value.toLocaleString()}
+        </h3>
+    </div>
+}
+
+
+export function Logo () {
+    return <div className="logo">
+        <h1>Patrimoney</h1>
     </div>
 }
 
@@ -35,23 +52,4 @@ function calculateFlux (data) {
         else if (flux.type === "SORTANT") sortant += flux.valeur;
     }
     return {entrant, sortant}
-}
-
-
-
-function Flux({type, value}) {
-    return <div  className="flux round centered">
-        <p  style={{color: "#40408080"}}>{type} /mois</p>
-        <h3>
-            <span style={{fontSize: "1rem"}}>Ar </span>
-            {value.toLocaleString()}
-        </h3>
-    </div>
-}
-
-
-export function Logo () {
-    return <div className="logo">
-        <h1>Patrimoney</h1>
-    </div>
 }

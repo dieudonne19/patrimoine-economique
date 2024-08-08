@@ -2,10 +2,12 @@
 
 const TITLE = ["Patrimony", "Money", "Savings Account", "Current Account"]
 
+import {MONEY_TYPES} from './contants.js'
 
 export function Header({data}) {
     
-
+    const money = data.filter(d => MONEY_TYPES.includes(d.type))    
+    // console.log(money, "header");
     return <header className="round">
         {
             TITLE.map((title, index) => {
@@ -13,7 +15,7 @@ export function Header({data}) {
                     <MoneyCard 
                         key={index}  
                         title={title} 
-                        value={matchValueWithTitle(title, data)} 
+                        value={matchValueWithTitle(title, money)} 
                     />
                 )
             })
@@ -28,10 +30,12 @@ export function Header({data}) {
  * @returns 
  */
 function matchValueWithTitle(title, data) {
-    if (title === "Money") return data?.[3].valeur
-    else if (title === "Savings Account") return data?.[4].valeur
-    else if (title === "Current Account")return data?.[5].valeur
-    else return 0;
+    if (title === "Money") return data?.[0].valeur
+    else if (title === "Savings Account") {
+        return sessionStorage.getItem("savingsAccount") ? sessionStorage.getItem("savingsAccount") : 0;
+    }
+    else if (title === "Current Account")return data?.[2].valeur
+    else return sessionStorage.getItem("patrimoine") ? sessionStorage.getItem("patrimoine") : 0;
 }
 
 
@@ -41,7 +45,7 @@ function MoneyCard({title, value}) {
         <p style={{color: "#40408080"}} >{title}</p>
         <h3>
             <span style={{fontSize: "1rem"}}>Ar </span>
-            {value.toLocaleString()}
+            {isNaN(value) ? 0 : (value).toLocaleString()}
         </h3>
     </div>
 }

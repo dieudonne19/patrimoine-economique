@@ -39,16 +39,16 @@ export class CompteBancaireEpargne extends Money {
      * @returns {Number}
      */
     getValeurAt(dateDonnee) {
-        if (this.dateDebut < dateDonnee ) {
+        if (super.getDateDebut <= new Date(dateDonnee)) {
             const intervalDeMois = new Date(dateDonnee).getMonth() - super.getDateDebut.getMonth();
             const intervalDeAnnee =  new Date(dateDonnee).getFullYear() - super.getDateDebut.getFullYear();
-            const intervalDeJours = new Date(dateDonnee).getDay() - super.getDateDebut.getDay();
+            const intervalDeJours = new Date(dateDonnee).getDate() - super.getDateDebut.getDate();
             const nombreAnnee = intervalDeAnnee + intervalDeMois / 12;
 
             const interet = (super.getValeur  * (this.tauxDinteret / 100)) * (nombreAnnee + intervalDeJours / 365);
 
             return Math.round(super.getValeur + interet);
-        } else return this.getValeur
+        } else return 0
     }
 }
 
