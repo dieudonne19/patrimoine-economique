@@ -6,6 +6,8 @@ import {BienMateriels} from "./models/Possessions/BienMateriels.js";
 import {CompteBancaireCourant, CompteBancaireEpargne, Money} from "./models/Possessions/Money.js";
 import { Flux } from "./models/Flux.js";
 
+
+
 // Propriétaire du patrimoine
 export const Moi = new Personne("Iloniaina");
 
@@ -34,6 +36,8 @@ const maPatrimoine = new Patrimoine(Moi, possessions, flux, "2024-08-08");
 // console.log(maPatrimoine.scanDate("08 August 2024", "08 August 2024"))
 // console.log(maPatrimoine.scanDate(new Date("2023-05-08"), new Date("2024-07-08")));
 
-// maPatrimoine.build()
-const patrimoine = maPatrimoine.getPatrimoineValueAt("2024-08-09")
-console.log(patrimoine);
+maPatrimoine.save()
+export const patrimony = new Patrimoine(Moi, possessions, flux, "2024-08-08");
+console.log(patrimony);
+
+

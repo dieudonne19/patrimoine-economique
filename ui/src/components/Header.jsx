@@ -30,11 +30,12 @@ export function Header({data}) {
  * @returns 
  */
 function matchValueWithTitle(title, data) {
-    if (title === "Money") return data?.[0].valeur
+    if (title === "Money") return data[0].valeur
     else if (title === "Savings Account") {
-        return sessionStorage.getItem("savingsAccount") ? sessionStorage.getItem("savingsAccount") : 0;
+        return sessionStorage.getItem("savingsAccount") ? 
+            sessionStorage.getItem("savingsAccount") : data[1].valeur;
     }
-    else if (title === "Current Account")return data?.[2].valeur
+    else if (title === "Current Account")return data[2].valeur
     else return sessionStorage.getItem("patrimoine") ? sessionStorage.getItem("patrimoine") : 0;
 }
 
@@ -45,7 +46,7 @@ function MoneyCard({title, value}) {
         <p style={{color: "#40408080"}} >{title}</p>
         <h3>
             <span style={{fontSize: "1rem"}}>Ar </span>
-            {isNaN(value) ? 0 : (value).toLocaleString()}
+            {isNaN(value) ? "..." : (value).toLocaleString()}
         </h3>
     </div>
 }

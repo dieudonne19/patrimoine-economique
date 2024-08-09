@@ -30,7 +30,7 @@ export class BienMateriels extends Possession {
             const valeurAmortissement = 
             (this.valeur * (this.amortissement / 100)) * (nombreMois / 12 + intervalDeJours /365);
             this.valeur -= valeurAmortissement;
-        } else return 0;
+        };
     }
 
     getValeurAt(dateDonnee) {

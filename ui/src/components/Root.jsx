@@ -3,11 +3,9 @@ import JSON from "../../../data/data.json";
 import { Outlet } from "react-router-dom";
 import { useState } from "react";
 import { Sidebar } from "./Sidebar";
-import { Patrimoine } from "../../../models/Patrimoine";
-import { flux, Moi, possessions } from "../../..";
+import {patrimony} from '../../../index.js'
 
 
-const patrimony = new Patrimoine(Moi, possessions, flux, "2024-08-08");
 
 
 export function Root() {
@@ -15,18 +13,19 @@ export function Root() {
     const [data, setData] = useState(JSON);
     const [date, setDate] = useState("");
     const [isThereError, setIsThereError] = useState(false);
+    // eslint-disable-next-line no-unused-vars
     const [patrimonyValue, setPatrimonyValue] = useState(0);
     // console.log(data);
     const handleClick = () => {
         
         if (!isNaN(new Date(date).getDate())) {
-
             
             setPatrimonyValue(patrimony.getPatrimoineValueAt(date).total);
             sessionStorage.setItem("patrimoine", patrimony.getPatrimoineValueAt(date).total)
             sessionStorage.setItem("savingsAccount", patrimony.getPatrimoineValueAt(date).savingsAccount)
 
-            data.push({patrimoine: patrimony.getPatrimoineValueAt(date).total})
+            data.push({patrimoine: patrimony.getPatrimoineValueAt(date).total, date: new Date()})
+            setIsThereError(false)
             setDate("")
             
         } else {
@@ -45,6 +44,7 @@ export function Root() {
             <nav className="nav" >
                 <a  href="/flux">flux</a>
                 <a href="/">possessions</a>
+                <a>Date du patrimoine : {patrimony.date}</a>
             </nav>
 
             <Outlet/>
@@ -53,6 +53,7 @@ export function Root() {
                 <input 
                     id="date"
                     type="date"
+                    value={date}
                     onChange={(e) => setDate(e.target.value)}
                     required
                 />

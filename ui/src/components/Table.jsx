@@ -40,10 +40,10 @@ export function Table({className, data}) {
 function TableRow({value}) {
 
     const styleIn = {
-        color: "rgb(32, 139, 32, .5)"
+        color: "rgb(32, 139, 32, .7)"
     }
     const styleOut = {
-        color: "rgb(177, 36, 36, 0.5)"
+        color: "rgb(177, 36, 36, 0.7)"
     }
 
 
@@ -51,7 +51,7 @@ function TableRow({value}) {
         <td style={{color: "rgba(1, 1, 66, 0.801)"}}>{value.libelle}</td>
         <td style={{color: "#4d4d4d"}}>{(value.valeur).toLocaleString()}</td>
         <td style={value.type === "ENTRANT" ? styleIn : styleOut} >{value.type}</td>
-        <td>{value.dateDebut}</td>
+        <td>{value.dateDebut.slice(0, 10)}</td>
         <td>{value.possesseur.nom}</td>
     </tr>
 }

@@ -62,9 +62,9 @@ export class Patrimoine {
     /**
      * Contruis le fichier JSON
      */
-    build() {
+    save() {
         const valeur = [
-            {model: "Personne", data: {possesseur: this.possesseur.getNom}},
+            {model: "Personne", data: {nom: this.possesseur.getNom}},
             {model: "Patrimoine", data: {
                 possesseur: {nom: this.possesseur.getNom},
                 possessions: this.possessions,
