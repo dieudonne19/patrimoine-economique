@@ -1,5 +1,5 @@
 import { describe, it } from "mocha";
-import { assert } from "chai";
+import { assert, expect } from "chai";
 import { BienMateriels } from "../models/Possessions/BienMateriels.js";
 import { Personne } from "../models/Personne.js";
 
@@ -18,8 +18,8 @@ describe("test about depreciation of \"bien\" value", () => {
     })
 
 
-    it("should return 270000", () => {
-        assert.closeTo(portable.getValeurAt("2025-08-08"), 269900, null, null)
+    it("should return approximatively 270000", () => {
+        assert.closeTo(portable.getValeurAt("2025-08-08"), 269900, 100)
     })
 
     
